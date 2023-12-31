@@ -13,10 +13,10 @@ RUN yarn install
 COPY . .
 
 #expose port 3000
-EXPOSE 4500
+EXPOSE 3000
 
 #run the app
-CMD ["yarn", "start"]
+CMD ["yarn", "start:dev"]
 
 
 
