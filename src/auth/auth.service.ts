@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
- class AuthService {
+class AuthService {
     constructor(
         private readonly prisma: PrismaService,
         private userService: UsersService
@@ -21,12 +21,12 @@ import { UsersService } from 'src/users/users.service';
     }: RegisterDto): Promise<User | void> {
 
         const newUser: User = await this.prisma.user.create({
-            data: {email, username, role}
+            data: { email, username, role }
         })
 
         return newUser;
     }
-}   
+}
 
 
 export default AuthService;
