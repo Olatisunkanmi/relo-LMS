@@ -10,7 +10,7 @@ export class AuthDto {
   password: string;
 }
 
-export class UserSignUpDto extends AuthDto {
+export class RegisterDto extends AuthDto {
   @IsString()
   @IsNotEmpty()
   firstName: string;
@@ -18,4 +18,12 @@ export class UserSignUpDto extends AuthDto {
   @IsString()
   @IsNotEmpty()
   lastName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  username: string;
+
+  @IsString()
+  @IsNotEmpty()
+  role: any;
 }

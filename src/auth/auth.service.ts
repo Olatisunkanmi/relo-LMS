@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { UserSignUpDto } from './dto/auth.dto';
+import { RegisterDto } from './dto/auth.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
-export class AuthService {
+ class AuthService {
     constructor(
         private readonly prisma: PrismaService,
         private userService: UsersService
@@ -15,8 +15,18 @@ export class AuthService {
         email,
         firstName,
         lastName,
+        username,
+        role,
         password
-    }: UserSignUpDto): Promise<User|void>{
+    }: RegisterDto): Promise<User | void> {
 
+        const newUser: User = await this.prisma.user.create({
+            data: {email, username, role}
+        })
+
+        return newUser;
     }
-}
+}   
+
+
+export default AuthService;

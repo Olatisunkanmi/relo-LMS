@@ -4,12 +4,12 @@ import { Request } from "express";
 
 @Controller('heartbeat')
 export class HeartbeatController {
-    
+
     @Get('/health')
     async heartbeat(@Req() req: Request) {
-      return {
-        message: 'Heartbeat',
-      };
+        return {
+            message: 'Heartbeat',
+        };
     }
 
 }
