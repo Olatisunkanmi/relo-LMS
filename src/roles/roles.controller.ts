@@ -1,4 +1,4 @@
-import { Get, Body, Controller, Post } from '@nestjs/common'
+import { Get, Body, Controller, Post, Param } from '@nestjs/common'
 import { RolesDto } from './dto/roles.dto'
 import RolesService from './roles.service'
 
@@ -20,6 +20,12 @@ class RolesController {
         } catch (error) {
           return { error: 'Failed to fetch roless' };
         }
+      }
+
+      @Post('role/:id')
+      async findRolebyId(@Param('id')id: any){
+        id = id*1;
+        return this.roleservice.findRolebyId(id)
       }
 }
 

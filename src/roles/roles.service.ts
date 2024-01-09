@@ -32,5 +32,22 @@ class RolesService {
             throw new Error('Failed to fetch roles');
         }
     }
+
+    async findRolebyId(id: any): Promise<Roles | null> {
+        try {
+            const role: Roles | null = await this.prisma.roles.findUnique({
+                where: {
+                    id: 1,
+                } ,
+            });
+    
+            return role;
+        } catch (error) {
+            console.error('Error fetching role:', error);
+            throw new Error('Failed to fetch role');
+        }
+    }
+    
+    
 }
 export default RolesService;
