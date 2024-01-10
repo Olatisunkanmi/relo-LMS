@@ -27,6 +27,8 @@ class RolesController {
         id = id*1;
         return this.roleservice.findRolebyId(id)
       }
+
+     
 }
 
 export default RolesController

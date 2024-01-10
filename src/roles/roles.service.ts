@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Roles } from "@prisma/client";
+import { Roles, User } from "@prisma/client";
 import { RolesDto } from "./dto/roles.dto";
 import { PrismaService } from "src/prisma/prisma.service";
 
@@ -37,17 +37,23 @@ class RolesService {
         try {
             const role: Roles | null = await this.prisma.roles.findUnique({
                 where: {
-                    id: 1,
-                } ,
+                    id: id,
+                },
             });
-    
+
             return role;
         } catch (error) {
             console.error('Error fetching role:', error);
             throw new Error('Failed to fetch role');
         }
     }
-    
-    
+
+    async roleExists({ type }: { type: string }) {
+        const role = await this.prisma.roles.findFirst({
+            where: { type: type }
+        })
+
+        return !!role;
+    }
 }
 export default RolesService;
