@@ -39,6 +39,10 @@ class RolesService {
                 where: {
                     id: id,
                 },
+                include:{
+                    users:true
+                }
+            
             });
 
             return role;
