@@ -5,6 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersService } from 'src/users/users.service';
 import RolesService from 'src/roles/roles.service';
 import { CONSTANT } from 'src/common';
+import { hash, compare } from  'bcrypt';
 
 @Injectable()
 class AuthService {
@@ -34,9 +35,11 @@ class AuthService {
             where: { type: role }
         })
 
+        const passwordHash: string = await hash(password, 10);
+
         const newUser: User = await this.prisma.user.create({
             data: {
-                email, username, role: {
+                email, username, passwordHash, role: {
                     connect: {
                         id: exRole.id
                     }
